@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/services.dart';
 import 'package:zktor/main.dart';
 import 'package:zktor/post_screens/selfie_camera_screen.dart';
 import 'package:zktor/splash/splash_screen.dart';
 import 'package:zktor/util/common_files/all_text_style.dart';
+import 'package:flutter/material.dart';
+
+
+
 
 final MethodChannel _channel = MethodChannel(
   'miguelruivo.flutter.plugins.filepicker',
