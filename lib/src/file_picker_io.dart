@@ -108,153 +108,160 @@ class FilePickerIO extends FilePicker {
       final context = navigatorKey.currentState!.overlay!.context;
       var width = MediaQuery.of(context).size.width;
       var height = MediaQuery.of(context).size.height;
-      var  val = await showDialog(
 
-        context: context,
-        barrierDismissible: true,
-        builder: (context) {
-          bool loading2 = false;
-          return StatefulBuilder(
-            builder: (context, setState2) {
-              return Align(
-                alignment: Alignment.bottomCenter,
-                child: Material(
-                  color: Colors.transparent,
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(15),
-                        topLeft: Radius.circular(15),
+      var val;
+
+      if((fileType != null && fileType == FileType.image) || (allowedExtensions != null && (allowedExtensions.contains('jpg') || allowedExtensions.contains('jpeg') || allowedExtensions.contains('png') || allowedExtensions.contains('webp')))){
+        val = await showDialog(
+
+          context: context,
+          barrierDismissible: true,
+          builder: (context) {
+            bool loading2 = false;
+            return StatefulBuilder(
+              builder: (context, setState2) {
+                return Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(15),
+                          topLeft: Radius.circular(15),
+                        ),
+                        color: Colors.white,
                       ),
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: 20,),
-                            Center(
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                width: 60,height: 5,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(22),
-                                    color: Colors.black
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(width: 20,),
+                              Center(
+                                child: Container(
+                                  margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                                  width: 60,height: 5,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(22),
+                                      color: Colors.black
+                                  ),
                                 ),
                               ),
-                            ),
-                            InkWell(
-                                onTap: (){
-                                  Navigator.pop(context);
-                                },
-                                child: Icon(Icons.close,color: Colors.black))
-                          ],
-                        ),
-                       Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
-                          child: langText("Select One", style:  zktorTextStyleBlack(context,0.048, FontWeight.w700,),),
-                        ),
-                        SingleChildScrollView(
-                          child: Center(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
+                              InkWell(
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Icon(Icons.close,color: Colors.black))
+                            ],
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            child: langText("Select One", style:  zktorTextStyleBlack(context,0.048, FontWeight.w700,),),
+                          ),
+                          SingleChildScrollView(
+                            child: Center(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
 
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    InkWell(
-                                      onTap: (){
-                                        Navigator.pop(context,'continue');
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                                        child: Row(
-                                          children: [
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      InkWell(
+                                        onTap: (){
+                                          Navigator.pop(context,'continue');
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                                          child: Row(
+                                              children: [
 
-                                            Icon(Icons.photo, size: 32),
+                                                Icon(Icons.photo, size: 32),
 
-                                            SizedBox(width: 15,height:1),
+                                                SizedBox(width: 15,height:1),
 
-                                            Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
+                                                Column(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
 
-                                                  langText("Gallery", style:  zktorTextStyleBlack(context,0.045, FontWeight.w600,),),
+                                                      langText("Gallery", style:  zktorTextStyleBlack(context,0.045, FontWeight.w600,),),
 
-                                                  SizedBox(height: 2,width:1),
+                                                      SizedBox(height: 2,width:1),
 
-                                                  langText("Choose from gallery", style:  zktorTextStyleBlack(context,0.038, FontWeight.w500,),)
+                                                      langText("Choose from gallery", style:  zktorTextStyleBlack(context,0.038, FontWeight.w500,),)
 
-                                                ]
-                                            )
+                                                    ]
+                                                )
 
-                                          ]
+                                              ]
+                                          ),
                                         ),
                                       ),
-                                    ),
 
-                                    SizedBox(height: 7,width:1),
+                                      SizedBox(height: 7,width:1),
 
-                                    InkWell(
-                                      onTap: () async{
-                                        File? result = await Navigator.push(
-                                            context, new MaterialPageRoute(builder: (context) => CameraScreen()));
-                                        Navigator.pop(context,result);
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                                        child: Row(
-                                          children: [
+                                      InkWell(
+                                        onTap: () async{
+                                          File? result = await Navigator.push(
+                                              context, new MaterialPageRoute(builder: (context) => CameraScreen()));
+                                          Navigator.pop(context,result);
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                                          child: Row(
+                                              children: [
 
-                                            Icon(Icons.camera_alt, size: 32),
+                                                Icon(Icons.camera_alt, size: 32),
 
-                                            SizedBox(width: 15,height:1),
+                                                SizedBox(width: 15,height:1),
 
-                                            Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-
-
-                                                  langText("Camera", style:  zktorTextStyleBlack(context,0.045, FontWeight.w600,),),
-
-                                                  SizedBox(height: 2,width:1),
-
-                                                  langText("Capture from camera", style:  zktorTextStyleBlack(context,0.038, FontWeight.w500,),)
+                                                Column(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
 
 
-                                                ]
-                                            )
+                                                      langText("Camera", style:  zktorTextStyleBlack(context,0.045, FontWeight.w600,),),
 
-                                          ]
+                                                      SizedBox(height: 2,width:1),
+
+                                                      langText("Capture from camera", style:  zktorTextStyleBlack(context,0.038, FontWeight.w500,),)
+
+
+                                                    ]
+                                                )
+
+                                              ]
+                                          ),
                                         ),
                                       ),
-                                    ),
 
-                                  ],
-                                ),
+                                    ],
+                                  ),
 
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
-          );
-        },
-      );
+                );
+              },
+            );
+          },
+        );
+      }else{
+        val ='continue';
+      }
 
       List<Map>? result = [];
 
@@ -262,7 +269,7 @@ class FilePickerIO extends FilePicker {
         return null;
       }else if(val is File){
         result = [
-          {"path": val.path,"size": 0}
+          {"path": val.path,"size": 0,"name":''}
         ];
       }else{
         result = await _channel.invokeListMethod(type, {
