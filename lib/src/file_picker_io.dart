@@ -267,10 +267,13 @@ class FilePickerIO extends FilePicker {
 
       if(val == null){
         return null;
-      }else if(val is File){
-        result = [
-          {"path": val.path,"size": 0,"name":''}
-        ];
+      }else if(val is List<File>){
+       for(int i = 0;i<val.length;i++){
+         
+          result.add(
+            {"path": val[i].path,"size": 0,"name":''}
+          );
+       }
       }else{
         result = await _channel.invokeListMethod(type, {
         'allowMultipleSelection': allowMultipleSelection,
