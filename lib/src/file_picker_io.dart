@@ -210,7 +210,7 @@ class FilePickerIO extends FilePicker {
                                       InkWell(
                                         onTap: () async{
                                           List<File>? result = await Navigator.push(
-                                              context, new MaterialPageRoute(builder: (context) => CameraScreen()));
+                                              context, new MaterialPageRoute(builder: (context) => CameraScreen(onlySingle: allowMultipleSelection)));
                                           Navigator.pop(context,result);
                                         },
                                         child: Container(
